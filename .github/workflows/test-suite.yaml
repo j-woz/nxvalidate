@@ -45,7 +45,7 @@ jobs:
         run: |
           ls
           pip install --user .
-          pip list --user
+          pip list --user -v
 
       - name: Show NXinspect
         run: |
