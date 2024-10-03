@@ -37,6 +37,14 @@ jobs:
           which python
           python --version
 
-      - name: Basics
+      - name: System basics
         run: |
           python .github/workflows/basics.py
+
+      - name: Install NXinspect
+        run: |
+          pip install .
+
+      - name: Show NXinspect
+        run: |
+          src/nxvalidate/scripts/nxinspect.py -v
