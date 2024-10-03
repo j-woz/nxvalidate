@@ -43,8 +43,11 @@ jobs:
 
       - name: Install NXinspect
         run: |
-          pip install .
+          ls
+          pip install --user .
+          pip list --user
 
       - name: Show NXinspect
         run: |
-          src/nxvalidate/scripts/nxinspect.py -v
+          ls ~/.local/bin
+          ~/.local/bin/nxinspect -v
