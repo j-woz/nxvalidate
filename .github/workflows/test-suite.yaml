@@ -3,6 +3,8 @@ name: Test Suite
 env:
   # For Chicago time on log messages:
   TZ: CST6CDT
+  # Location of NXS files to generate and inspect:
+  DATA: /tmp/test-data
 
 on:
   schedule:
@@ -36,22 +38,22 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Show Python
+      - name: System basics
         run: |
           which python
           python --version
-
-      - name: System basics
-        run: |
           python .github/workflows/basics.py
+          mkdir -pv $DATA
 
       - name: Install NXinspect
         run: |
-          ls
           pip install --user .
-          pip list --user -v
-
-      - name: Show NXinspect
-        run: |
-          ls ~/.local/bin
+          pip list    --user
+          echo
+          echo "Installed nxinspect:"
           ~/.local/bin/nxinspect -v
+
+      - name: Test 0001
+        run: |
+          python tests/0001-minimal.py
+          ~/.local/bin/nxinspect $DATA/0001-minimal.nxs
