@@ -56,4 +56,4 @@ jobs:
       - name: Test 0001
         run: |
           python tests/0001-minimal.py
-          ~/.local/bin/nxinspect $DATA/0001-minimal.nxs
+          ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs
