@@ -58,6 +58,11 @@ jobs:
           wget -q -O $DATA/chopper.nxs https://github.com/nexpy/nexpy/raw/refs/heads/main/src/nexpy/examples/chopper.nxs
           ~/.local/bin/nxinspect -f $DATA/chopper.nxs
 
+      - name: Test NeXpy Example
+        run: |
+          wget -q -O $DATA/example.nxs https://github.com/nexpy/nexpy/raw/refs/heads/main/src/nexpy/examples/example.nxs
+          ~/.local/bin/nxinspect -f $DATA/example.nxs
+
       - name: Test 0001
         run: |
           python tests/0001-minimal.py
