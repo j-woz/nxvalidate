@@ -55,7 +55,7 @@ jobs:
 
       - name: Test Chopper
         run: |
-          wget -O $DATA/chopper.nxs https://github.com/nexpy/nexpy/raw/refs/heads/main/src/nexpy/examples/chopper.nxs
+          wget -q -O $DATA/chopper.nxs https://github.com/nexpy/nexpy/raw/refs/heads/main/src/nexpy/examples/chopper.nxs
           ~/.local/bin/nxinspect -f $DATA/chopper.nxs
 
       - name: Test 0001
