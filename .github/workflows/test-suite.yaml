@@ -67,6 +67,7 @@ jobs:
         run: |
           python tests/0001-minimal.py
           .github/workflows/check ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs | tee log
+          echo proceed
           grep "class is NXentry" log
 
       - name: Test 0002
