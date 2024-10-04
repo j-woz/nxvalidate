@@ -10,6 +10,7 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+import h5py
 from nexusformat.nexus import NeXusError, NXentry, NXgroup, NXsubentry, nxopen
 
 from .utils import (is_valid_bool, is_valid_char, is_valid_char_or_number,
@@ -663,6 +664,14 @@ class FileValidator(Validator):
             for child_node in node.entries.values():
                 yield from self.walk(child_node, indent+1)
 
+    def check_file(self):
+        with h5py.File(self.filename, 'r') as fp:
+            if ('NX_class' in fp.attrs
+                    and fp.attrs['NX_class'] == 'NXentry'):
+                raise NeXusError(
+                    'top-level class is NXentry: '
+                    'must be NXroot or unset')
+
     def validate(self, path=None):
         """
         Validates a NeXus file by walking through its tree structure.
@@ -710,6 +719,7 @@ def validate_file(filename, path=None, definitions=None):
     if not Path(filename).exists():
         raise NeXusError(f'File {filename} does not exist')
     validator = FileValidator(filename, definitions=definitions)
+    validator.check_file()
     validator.validate(path)
 
 
