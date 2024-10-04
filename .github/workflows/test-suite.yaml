@@ -66,4 +66,14 @@ jobs:
       - name: Test 0001
         run: |
           python tests/0001-minimal.py
-          ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs
+          .github/workflows/check ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs
+
+      - name: Test 0002
+        run: |
+          python tests/0002-root-save.py
+          ~/.local/bin/nxinspect -f $DATA/0002-root-save.nxs
+
+      - name: Test 0003
+        run: |
+          python tests/0003-nxopen-w.py
+          ~/.local/bin/nxinspect -f $DATA/0003-nxopen-w.nxs
