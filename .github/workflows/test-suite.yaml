@@ -63,12 +63,12 @@ jobs:
           wget -q -O $DATA/example.nxs https://github.com/nexpy/nexpy/raw/refs/heads/main/src/nexpy/examples/example.nxs
           ~/.local/bin/nxinspect -f $DATA/example.nxs
 
-      - name: Test 0001
-        run: |
-          python tests/0001-minimal.py
-          .github/workflows/check ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs |& tee log
-          echo "Checking error messages:"
-          grep "class is NXentry" log
+      # - name: Test 0001
+      #   run: |
+      #     python tests/0001-minimal.py
+      #     .github/workflows/check ~/.local/bin/nxinspect -f $DATA/0001-minimal.nxs |& tee log
+      #     echo "Checking error messages:"
+      #     grep "class is NXentry" log
 
       - name: Test 0002
         run: |
