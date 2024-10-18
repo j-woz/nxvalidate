@@ -1261,7 +1261,10 @@ def log(message, level='info', indent=0, width=None):
         The number of spaces to indent the log message (default is 0).
     """
     if width is None:
-        width = os.get_terminal_size().columns
+        if sys.stdin.isatty():
+            width = os.get_terminal_size().columns
+        else:
+            width = 80
     if len(message) + 4*indent > width:
         if message.endswith('\n'):
             message = message[:width - 4*indent - 3] + '...' + '\n'
