@@ -87,3 +87,10 @@ jobs:
           echo "Checking output messages:"
           grep "NXroot:" log
           grep "NXentry: /entry" log
+
+      - name: Test 0005
+        run: |
+          python tests/0005-top-data.py
+          ~/.local/bin/nxinspect -f $DATA/0005-top-data.nxs -i |& tee log
+          echo "Checking error messages:"
+          grep "NXdata is an invalid class in NXroot" log
