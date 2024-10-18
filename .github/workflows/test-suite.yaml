@@ -79,3 +79,11 @@ jobs:
         run: |
           python tests/0003-nxopen-w.py
           ~/.local/bin/nxinspect -f $DATA/0003-nxopen-w.nxs
+
+      - name: Test 0004
+        run: |
+          python tests/0004-root.py
+          ~/.local/bin/nxinspect -f $DATA/0004-root.nxs -i |& tee log
+          echo "Checking output messages:"
+          grep "NXroot:" log
+          grep "NXentry: /entry" log
